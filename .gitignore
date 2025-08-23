@@ -138,7 +138,6 @@ dist
 # Vite logs files
 **/vite.config.js.timestamp-*
 **/vite.config.ts.timestamp-*
-**/vite.config.js
 
 **/eslint.config.js
 **/package-lock.json

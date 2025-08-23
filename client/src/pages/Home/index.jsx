@@ -4,14 +4,11 @@ import RouteCard from '../../components/RouteCard';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import { routes as data } from '../../data/rroutes';
-import { React, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
-
-
-
 
 const Home = () => {
   const [filters, setFilters] = useState({ district: null, trafficLights: null, attraction: null })
