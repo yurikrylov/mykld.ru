@@ -15,7 +15,7 @@ import '@fontsource/roboto/700.css';
 
 const Home = () => {
   const [filters, setFilters] = useState({ district: null, trafficLights: null, attraction: null })
-  const [cardsData, setCarsData] = useState([])
+  const [cardsData, setCarsdDAta] = useState([])
 
   useEffect(() => {
     const arr = data.filter((item )=> { if (filters.district==null){return true} else {return item.districts.includes(filters.district) }})
@@ -31,7 +31,7 @@ const Home = () => {
         else 
         {return item.attractions.includes(filters.attraction) }
       })
-    setCarsData(arr)
+    setCarsdDAta(arr)
 
   }, [filters])
 

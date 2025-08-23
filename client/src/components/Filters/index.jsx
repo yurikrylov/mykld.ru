@@ -1,4 +1,4 @@
-import { Box, AppBar, Typography, Select, Grid, Button, Link } from '@mui/material';
+import { InputLabel, MenuItem, FormControl, Select, Grid, Button } from '@mui/material';
 import { routes as data } from '../../data/rroutes'
 import { useState } from 'react';
 
@@ -41,20 +41,65 @@ const Filters = ({ filters, setFilters }) => {
     setAttractions('')
   }
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Link color='inherit' variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          Центральный
-        </Link>
-        <Link color='inherit' variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          Московский
-        </Link>
-        <Link color='inherit' variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          ленинградский
-        </Link>
-      </AppBar>
-    </Box>
+    <Grid container spacing={2}>
+      <Grid size={3}>
+        <FormControl fullWidth>
+          <InputLabel id="district-label">Район</InputLabel>
+          <Select
+            labelId="district-label"
+            id="district-label"
+            name='district'
+            value={district}
+            label="Район"
+            onChange={handleSelectChange}
+          >
+            {[...districtsList].map((region, index) => {
+              return <MenuItem key={index} id={"district"} value={region}>{region}</MenuItem>
+            })}
 
+          </Select>
+        </FormControl>
+      </Grid>
+      <Grid size={3}>
+
+        <FormControl fullWidth>
+          <InputLabel id="trafficLight-label">Сколько светофоров</InputLabel>
+          <Select
+            labelId="trafficLight-label"
+            id="trafficLight"
+            name='trafficLight'
+            value={trafficLights}
+            label="Сколько светофоров"
+            onChange={handleSelectChange}
+          >
+            {trafficLightsList.map((item, index) => {
+              return <MenuItem key={index} value={item}>{item}</MenuItem>
+            })}
+
+          </Select>
+        </FormControl>
+      </Grid>
+      <Grid size={3}>
+
+        <FormControl fullWidth>
+          <InputLabel id="attraction-label">Что увидеть</InputLabel>
+          <Select
+            labelId="attraction-label"
+            id="attraction"
+            value={attractions}
+            label="Что посмотреть"
+            name='attraction'
+            onChange={handleSelectChange}
+          >
+            {[...attractionsList].sort().map((item, index) => {
+              return <MenuItem key={index} value={item}>{item}</MenuItem>
+            })} </Select>
+        </FormControl>
+      </Grid>
+      <Grid size={3}>
+        <Button variant="text" size='large' onClick={() => clearFilters()}>Сбросить</Button>
+      </Grid>
+    </Grid>
   )
 }
 
