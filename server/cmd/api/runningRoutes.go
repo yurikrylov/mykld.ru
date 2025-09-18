@@ -3,12 +3,20 @@ package main
 import (
 	"fmt"
 	"net/http"
+
+	"github.com/yurikrylov/mykld.ru/server/db"
 )
 
-// Add a createMovieHandler for the "POST /v1/movies" endpoint. For now we simply
-// return a plain-text placeholder response.
 func (app *application) getRunningRoutesHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "get filtered routes")
+	repo := db.NewSQLiteRepository()
+	defer repo.Close()
+	allroutes, err := repo.GetAllRoutes()
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	_ = allroutes
 }
 
 func (app *application) getRunningRouteHandler(w http.ResponseWriter, r *http.Request) {

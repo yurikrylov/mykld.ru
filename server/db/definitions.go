@@ -1,4 +1,3 @@
-// db_definition.go
 package db
 
 import "errors"
