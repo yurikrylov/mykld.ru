@@ -4,19 +4,16 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/yurikrylov/mykld.ru/server/db"
+	"github.com/yurikrylov/mykld.ru/backend/db"
 )
 
 func (app *application) getRunningRoutesHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "get filtered routes")
-	repo := db.NewSQLiteRepository()
-	defer repo.Close()
-	allroutes, err := repo.GetAllRoutes()
+	runningRoutes, err := getAllRoutes(&db.SQLiteRepository{})
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		http.Error(w, "Unable to fetch running routes", http.StatusInternalServerError)
 		return
 	}
-	_ = allroutes
+	fmt.Fprintf(w, "%v\n", runningRoutes)
 }
 
 func (app *application) getRunningRouteHandler(w http.ResponseWriter, r *http.Request) {
