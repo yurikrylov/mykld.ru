@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Container, Typography, Box } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import Filters from '../../components/Filters';
